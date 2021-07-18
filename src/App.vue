@@ -1,15 +1,26 @@
+/* eslint-disable key-spacing */
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>{{title}}</h1>
+  <Modal/>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue';
+import Modal from './components/Modal.vue';
 
 export default {
-  name: 'App',
   components: {
-    HelloWorld,
+    Modal,
+  },
+  data() {
+    return {
+      title: ' My first Vue App :) ',
+    };
+  },
+  methods: {
+    handleClick() {
+      this.$refs.name.classList.add('active');
+      this.$refs.name.focus();
+    },
   },
 };
 </script>
