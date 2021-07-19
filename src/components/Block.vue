@@ -17,6 +17,7 @@ export default {
   mounted() {
     setTimeout(() => {
       this.showBlock = true;
+      this.startTimer();
     }, this.delay);
   },
   methods: {
@@ -27,7 +28,7 @@ export default {
     },
     stopTimer() {
       clearInterval(this.timer);
-      console.log(this.reactionTimer);
+      this.$emit('end', this.reactionTimer);
     },
   },
 };
