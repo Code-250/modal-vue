@@ -1,55 +1,30 @@
 /* eslint-disable key-spacing */
 <template>
-  <h1>{{title}}</h1>
-  <p>Welcome....</p>
-  <div v-if="showModal">
-  <Modal theme="saled" @close="toggleModal">
-    <template v-slot:links>
-      <a href="#">signup</a>
-      <a href="#">get more info</a>
-    </template>
-    <h1>Becoming a Ninja</h1>
-    <p>there is a way that any one can become a ninja</p>
-  </Modal>
-  </div>
-  <teleport to=".modals" v-if="showModal2">
-    <Modal @close="toggleModal2">
-     <h1>hello world</h1>
-     <p>please make it work</p>
-    </Modal>
-  </teleport>
-  <button @click="toggleModal">open modal</button>
-  <button @click="toggleModal2">open modal 2</button>
+<h1>Reaction Timer</h1>
+<button @click="start" :disabled="isPlaying">Play</button>
+<Block v-if="isPlaying" :delay="delay"/>
 </template>
 
 <script>
-import Modal from './components/Modal.vue';
+import Block from './components/Block.vue';
 
 export default {
-  components: {
-    Modal,
-  },
+  components: { Block },
+
   data() {
     return {
-      title: ' My first Vue App :) ',
-      header: 'sign up for some videos',
-      text: 'there are more you can see',
-      showModal: false,
-      showModal2: false,
+      isPlaying: false,
+      delay: null,
     };
   },
   methods: {
-    handleClick() {
-      this.$refs.name.classList.add('active');
-      this.$refs.name.focus();
-    },
-    toggleModal() {
-      this.showModal = !this.showModal;
-    },
-    toggleModal2() {
-      this.showModal2 = !this.showModal2;
+    start() {
+      this.delay = 1000 + Math.random() * 5000;
+      this.isPlaying = true;
+      console.log(this.delay);
     },
   },
+
 };
 </script>
 
